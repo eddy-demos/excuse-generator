@@ -2,15 +2,14 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
-
 jobs:
   server-build:
     name: Server — install & seed
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     defaults:
       run:
         working-directory: server
@@ -27,7 +26,7 @@ jobs:
 
   client-build:
     name: Client — install & build
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     defaults:
       run:
         working-directory: client
@@ -50,7 +49,7 @@ jobs:
 
   api-smoke-test:
     name: API — smoke test endpoints
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     needs: server-build
     defaults:
       run:
@@ -115,7 +114,7 @@ jobs:
 
   audit:
     name: Security audit
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     strategy:
       fail-fast: false
       matrix:
